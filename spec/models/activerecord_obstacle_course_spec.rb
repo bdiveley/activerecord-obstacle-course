@@ -373,9 +373,9 @@ describe 'ActiveRecord Obstacle Course' do
 
   it '20. returns the average amount for all orders for one user' do
     # ---------------------- Using Ruby -------------------------
-    orders = Order.all.map do |order|
-      order if order.user_id == 3
-    end.select{|i| !i.nil?}
+    # orders = Order.all.map do |order|
+    #   order if order.user_id == 3
+    # end.select{|i| !i.nil?}
 
     # average = (orders.map(&:amount).inject(:+)) / (orders.count)
     # -----------------------------------------------------------
@@ -394,12 +394,12 @@ describe 'ActiveRecord Obstacle Course' do
 
   it '21. calculates the total sales' do
     # ---------------------- Using Ruby -------------------------
-    total_sales = Order.all.map(&:amount).inject(:+)
+    # total_sales = Order.all.map(&:amount).inject(:+)
     # -----------------------------------------------------------
 
     # ------------------ Using ActiveRecord ---------------------
-    # Solution goes here
-    # -----------------------------------------------------------
+    total_sales = Order.sum(:amount)
+     # -----------------------------------------------------------
 
     # Expectation
     expect(total_sales).to eq(9750)
